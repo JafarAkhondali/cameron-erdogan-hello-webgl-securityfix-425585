@@ -1,0 +1,33 @@
+
+<html>
+	<title>Testin' - Main</title>
+
+	<link rel=stylesheet href="codemirror-3.22/lib/codemirror.css">
+	<link rel=stylesheet href="hellowebgl.css">
+
+	<script src="codemirror-3.22/lib/codemirror.js"></script>
+	<script src="codemirror-3.22/mode/javascript/javascript.js"></script>
+	<script src="codemirror-3.22/addon/edit/matchbrackets.js"></script>
+
+	<style>
+	  .CodeMirror { height: auto; border: 1px solid #ddd; }
+	  .CodeMirror-scroll { max-height: 200px; }
+	  .CodeMirror pre { padding-left: 7px; line-height: 1.25; }
+	</style>
+
+	<section id="script-container">
+		<textarea id="script">
+
+		</textarea>
+		<script>
+		    var editor = CodeMirror.fromTextArea(document.getElementById("script"), {
+		      lineNumbers: true,
+		      mode: "javascript",
+		      matchBrackets: true
+		    });
+		</script>
+
+
+	</section>
+
+</html>
