@@ -1,11 +1,12 @@
 #script-container
 {
-	width: 500px;
+	width: 40%;
 	display:inline-block;
 }
 
-#canvas
+#sandbox
 {
+	width: 40%;
 	border:1px solid #000000;
 	float: left;
 	display: inline-block;
