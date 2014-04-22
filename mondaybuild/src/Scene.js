@@ -1,14 +1,18 @@
 FOSSSim.Scene = function()
 {
-	// z this.sphere;
-	// var num_spheres;
-	// var light;
-	// var ambientlight;
+	//set manually for now
+	this.num_particles = 2;
+
+	// arrays of floats for math calculations
 	this.x = [];
 	this.v = [];
 	this.m = [];
 	this.r = [];
-	this.num_particles = 2;
+	this.forces = [];
+	
+
+	// array of THREE spheres
+	this.spheres = [];
 };
 
 
@@ -18,15 +22,18 @@ FOSSSim.Scene.prototype =
 
 	init: function()
 	{
-		this.init_spheres();
-		this.init_lights();
+		this.initSpheres();
+		this.initLights();
+
 	}, 
 
-	init_spheres: function()
+	initSpheres: function()
 	{
 		
 		
-		this.init_vectors();
+		this.initVectors();
+
+		this.initForces();
 
 		for(var i = 0; i < this.num_particles; i++)
 		{
@@ -35,21 +42,14 @@ FOSSSim.Scene.prototype =
 			var sphere = new THREE.Mesh(geometry, material);
 
 			sphere.position.set(this.x[2*i], this.x[2*i + 1], 0);
+
+			this.spheres.push(sphere);
 			three_scene.add(sphere);
 		}
 
-		// var num_spheres = 1;
-	 //    var geometry = new THREE.SphereGeometry( 1, 32, 16 );
-		// var material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
-		// this.sphere = new THREE.Mesh( geometry, material );
-
-		// this.sphere.position.set(0,0,0);
-		// three_scene.add(this.sphere);
-
-		// this.sphere.velocity = new THREE.Vector3(1, 0, 1);
 	},
 
-	init_lights: function()
+	initLights: function()
 	{
 		this.light = new THREE.PointLight(0xffffff);
 		this.light.position.set(10,10,10);
@@ -58,24 +58,39 @@ FOSSSim.Scene.prototype =
 		three_scene.add( this.ambientlight );
 	}, 
 	// this is hardcoded for now
-	init_vectors: function()
+	initVectors: function()
 	{	
 		// put a sphere at -2 0 with no velocity and mass of 1 and radius 1
-		this.x.push(-2);
+		this.x.push(-4);
 		this.x.push(0);
-		this.v.push(0);
-		this.v.push(0);
+		this.v.push(3);
+		this.v.push(3);
+		this.m.push(1);
 		this.m.push(1);
 		this.r.push(1);
 
 
 		// put another at 2 0 with upward velocity and mass of 2 and radius 0.5
-		this.x.push(2)
-		this.x.push(0)
-		this.v.push(0)
-		this.v.push(1)
+		this.x.push(4);
+		this.x.push(0);
+		this.v.push(-5);
+		this.v.push(5);
+		this.m.push(2);
 		this.m.push(2);
 		this.r.push(0.5);
 
+	}, 
+	initForces: function()
+	{
+		var grav_force = new FOSSSim.SimpleGravityForce();
+		this.forces.push(grav_force);
+	}, 
+	accumulateForces: function(F)
+	{
+		for(var i = 0; i < this.forces.length; i++)
+		{
+			this.forces[i].addForceToTotal(F);
+		}
 	}
+
 };

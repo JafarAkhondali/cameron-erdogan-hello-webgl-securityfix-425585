@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>My first Three.js app</title>
+		<title>Thuggin</title>
 		<style>canvas { width: 40%; height: 40% }</style>
 	</head>
 	<body>
@@ -10,12 +10,16 @@
 		<script src="src/main.js"></script>
 		<script src="src/Scene.js"></script>
 		<script src="src/Stepper.js"></script>
+		<script src="src/Force/Force.js"></script>
+		<script src="src/Force/SimpleGravityForce.js"></script>
+		<script src="src/Force/GravitationalForce.js"></script>
 
 		
 		<canvas id="canvas">
 		</canvas>
 
-		<button id="moveit">Something</button>
+		<button id="moveit">Pause</button>
+		<button id="step">Step</button>
 
 		<script>
 
@@ -33,9 +37,16 @@
             // });
             $("#moveit").click(function()
             {
-                toggle_pause();
+                togglePause();
                 console.log(paused);
             });
+
+            $("#step").click(function()
+            {
+            	step();
+            })
+
+
         });
     </script>
 

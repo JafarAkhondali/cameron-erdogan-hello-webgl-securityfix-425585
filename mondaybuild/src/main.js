@@ -7,7 +7,7 @@ var three_renderer;
 var FOSSSim = {};
 var fosssim_scene;
 var fosssim_stepper;
-var paused = false;
+var paused = true;
 var dt = 0.01;
 
 // create scenestepper object also
@@ -15,12 +15,12 @@ var dt = 0.01;
 // basically main is just gonna be the outermost layer of the script
 function main(canvas)
 {
-	init_scene(canvas);
+	initScene(canvas);
 
 	animate();
 }
 
-function init_scene(canvas)
+function initScene(canvas)
 {
 	// this.canvas = canvas;
 	// kinda arbitrarily set for math purposes
@@ -39,7 +39,7 @@ function init_scene(canvas)
     three_renderer.setSize(canvas_width, canvas_height);
 
     //sets camera position
-    three_camera.position.z = 5;
+    three_camera.position.z = 20;
 
     // initialialzes fosssim object
     fosssim_scene = new FOSSSim.Scene();
@@ -47,6 +47,8 @@ function init_scene(canvas)
 
     // initialize fosssim stepper
     fosssim_stepper = new FOSSSim.Stepper();
+
+    render();
 }
 
 function animate()
@@ -56,30 +58,37 @@ function animate()
 	// console.log(paused);
 	if(paused == false)
 	{
-
-		fosssim_stepper.explicit_euler_step();
+		fosssim_stepper.explicitEulerStep();
 		// update();
 		render();
 	}	
 }
 
+function step()
+{
+	console.log("stepped");
+
+	fosssim_stepper.explicitEulerStep();
+		// update();
+	render();
+}
 
 function render()
 {
 	three_renderer.render(three_scene, three_camera);
 }
 
-// scene stepping would go here
-function update()
-{
-	// for now just increment the position of sphere by point 1 or whatever
-	var sphere_pos = fosssim_scene.sphere.position;
-	sphere_pos.x += 0.01;
-	sphere_pos.z += 0.01;
+// // scene stepping would go here
+// function update()
+// {
+// 	// for now just increment the position of sphere by point 1 or whatever
+// 	var sphere_pos = fosssim_scene.sphere.position;
+// 	sphere_pos.x += 0.01;
+// 	sphere_pos.z += 0.01;
 
-}
+// }
 
-function toggle_pause()
+function togglePause()
 {
 	if(paused == true)
 	{
@@ -90,3 +99,20 @@ function toggle_pause()
 		paused = true;
 	}
 }
+
+function makeZeros(a, n)
+{
+	for(var i = 0; i < n; i++)
+		a.push(0);
+}
+
+function copySegmentIntoVector(vec, seg, start)
+{
+
+	for(var i = 0; i <seg.length; i++)
+	{
+		vec[start + i] = seg[i];
+	}
+}
+
+

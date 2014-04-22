@@ -15,12 +15,12 @@ var dt = 0.01;
 // basically main is just gonna be the outermost layer of the script
 function main(canvas)
 {
-	init_scene(canvas);
+	initScene(canvas);
 
 	animate();
 }
 
-function init_scene(canvas)
+function initScene(canvas)
 {
 	// this.canvas = canvas;
 	// kinda arbitrarily set for math purposes
@@ -57,7 +57,7 @@ function animate()
 	if(paused == false)
 	{
 
-		fosssim_stepper.explicit_euler_step();
+		fosssim_stepper.explicitEulerStep();
 		// update();
 		render();
 	}	
@@ -79,7 +79,7 @@ function update()
 
 }
 
-function toggle_pause()
+function togglePause()
 {
 	if(paused == true)
 	{
@@ -106,11 +106,11 @@ FOSSSim.Scene.prototype =
 
 	init: function()
 	{
-		this.init_spheres();
-		this.init_lights();
+		this.initSpheres();
+		this.initLights();
 	}, 
 
-	init_spheres: function()
+	initSpheres: function()
 	{
 		var num_spheres = 1;
 	    var geometry = new THREE.SphereGeometry( 1, 32, 16 );
@@ -122,7 +122,7 @@ FOSSSim.Scene.prototype =
 		this.sphere.velocity = new THREE.Vector3(1, 0, 1);
 	},
 
-	init_lights: function()
+	initLights: function()
 	{
 		this.light = new THREE.PointLight(0xffffff);
 		this.light.position.set(10,10,10);
@@ -145,7 +145,7 @@ FOSSSim.Stepper.prototype =
 {
 	constructor: FOSSSim.Stepper,
 
-	explicit_euler_step: function()
+	explicitEulerStep: function()
 	{
 		// no forces right now	
 		var sphere_pos = fosssim_scene.sphere.position;
