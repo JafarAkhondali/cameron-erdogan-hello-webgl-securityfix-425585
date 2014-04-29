@@ -27,7 +27,6 @@ $(document).ready(function(){
 
 function load_page_from_txt(filename, user_input)
 {	
-	var page_contents;
 	$.get(filename, function(data){
 			play_fiddle(data, user_input);
 		}
@@ -54,7 +53,8 @@ function play_fiddle(page_str, user_input)
 function insert_string_from_codemirror(page_str, user_input)
 {
 	var halves = page_str.split("@@@");
-	// aler/t(user_input);
+	// alert(user_input);
+	// console.log(halves);
 	return halves[0].concat(user_input, halves[1]);
 }
 
