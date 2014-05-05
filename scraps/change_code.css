@@ -1,0 +1,17 @@
+#script-container
+{
+	width: 40%;
+	display:inline-block;
+}
+
+#sandbox
+{
+	width: 40%;
+	border:1px solid #000000;
+	float: left;
+	display: inline-block;
+}
+
+.CodeMirror { height: auto; border: 1px solid #ddd; }
+.CodeMirror-scroll { max-height: 500px; }
+.CodeMirror pre { padding-left: 7px; line-height: 1.25; }

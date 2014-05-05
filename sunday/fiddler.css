@@ -1,0 +1,22 @@
+#fiddle
+{
+	width: 400px;
+	height: 450px;
+	display:inline-block;
+	border:1px solid #000000;
+	float: left;
+}
+
+.code-container
+{
+	width: 55%;
+	display:block;
+	border:1px solid #000000;
+	float: right;
+
+}
+
+#change-code
+{
+	float: right;
+}
