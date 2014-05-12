@@ -60,11 +60,14 @@ FOSSSim.Scene.prototype =
 	// this is hardcoded for now
 	initVectors: function()
 	{	
+
+
+
 		// put a sphere at -2 0 with no velocity and mass of 1 and radius 1
 		this.x.push(-4);
 		this.x.push(0);
-		this.v.push(3);
-		this.v.push(3);
+		this.v.push(0);
+		this.v.push(0);
 		this.m.push(1);
 		this.m.push(1);
 		this.r.push(1);
@@ -73,17 +76,38 @@ FOSSSim.Scene.prototype =
 		// put another at 2 0 with upward velocity and mass of 2 and radius 0.5
 		this.x.push(4);
 		this.x.push(0);
-		this.v.push(-5);
-		this.v.push(5);
-		this.m.push(2);
-		this.m.push(2);
+		this.v.push(0);
+		this.v.push(0);
+		this.m.push(1);
+		this.m.push(1);
 		this.r.push(0.5);
+
+		// //gravitational force test
+		// this.x.push(0);
+		// this.x.push(0);
+		// this.v.push(0);
+		// this.v.push(0);
+		// this.m.push(0.331436e6);
+		// this.m.push(0.331436e6);
+		// this.r.push(0.06);
+
+		// this.x.push(1);
+		// this.x.push(0);
+		// this.v.push(0);
+		// this.v.push(6.28316);
+		// this.m.push(1);
+		// this.m.push(1);
+		// this.r.push(0.02);
+
 
 	}, 
 	initForces: function()
 	{
-		var grav_force = new FOSSSim.SimpleGravityForce();
-		this.forces.push(grav_force);
+		// var grav_force = new FOSSSim.GravitationalForce([0, 1], 0.000118419);
+		// this.forces.push(grav_force);
+
+		var spring_force = new FOSSSim.SpringForce([0, 1], 6, 6, 1);
+		this.forces.push(spring_force);
 	}, 
 	accumulateForces: function(F)
 	{

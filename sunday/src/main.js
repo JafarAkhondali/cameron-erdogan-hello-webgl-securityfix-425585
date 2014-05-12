@@ -9,6 +9,8 @@ var fosssim_scene;
 var fosssim_stepper;
 var paused = true;
 var dt = 0.01;
+var time_elapsed = 0;
+var time_display;
 
 // create scenestepper object also
 
@@ -18,6 +20,12 @@ function main(canvas)
 	initScene(canvas);
 
 	animate();
+	// console.log("a thing");
+}
+
+function setTimeDisplay(td)
+{
+	time_display = td;
 }
 
 function initScene(canvas)
@@ -58,6 +66,9 @@ function animate()
 	// console.log(paused);
 	if(paused == false)
 	{
+		time_elapsed += 1;
+		time_display.innerHTML = time_elapsed;
+		
 		fosssim_stepper.explicitEulerStep();
 		// update();
 		render();
@@ -66,7 +77,9 @@ function animate()
 
 function step()
 {
-	console.log("stepped");
+	// console.log("stepped");
+	time_elapsed += 1;
+	time_display.innerHTML = time_elapsed;
 
 	fosssim_stepper.explicitEulerStep();
 		// update();
