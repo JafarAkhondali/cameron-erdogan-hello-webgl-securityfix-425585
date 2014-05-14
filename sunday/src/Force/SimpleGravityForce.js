@@ -1,10 +1,10 @@
 // applies a force to every non-fixed particle in the scene
-
-FOSSSim.SimpleGravityForce = function()
+// forgive given in a pair [fx, fy]
+FOSSSim.SimpleGravityForce = function(g)
 {
 	FOSSSim.Force.call(this);
 
-	this.g = [0, -9.81];
+	this.g = g;
 };
 
 FOSSSim.SimpleGravityForce.prototype = Object.create( FOSSSim.Force.prototype);

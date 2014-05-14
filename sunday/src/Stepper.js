@@ -40,6 +40,35 @@ FOSSSim.Stepper.prototype =
 		this.updateSpheresPos();
 	}, 
 
+	symplecticEulerStep: function()
+	{
+		var x = fosssim_scene.x;
+		var v = fosssim_scene.v;
+		var m = fosssim_scene.m;
+
+		var F = [];
+		makeZeros(F, 2*fosssim_scene.num_particles);
+		fosssim_scene.accumulateForces(F);
+
+
+		var dv = numeric.mul(F, dt);
+		dv = numeric.div(dv, m)
+		v = numeric.add(v, dv);
+
+		var dx = numeric.mul(v, dt);
+		x = numeric.add(x, dx);
+		
+		// console.log(x);
+		// console.log(v);
+
+
+		// probably have to do this because the numeric add returns a copy
+		fosssim_scene.x = x;
+		fosssim_scene.v = v;
+
+		this.updateSpheresPos();
+	},
+
 	updateSpheresPos: function()
 	{
 		var spheres = fosssim_scene.spheres;

@@ -1,11 +1,21 @@
-FOSSSim.LinearDampingForce = function(pair)
+FOSSSim.LinearDampingForce = function(b)
 {
 	FOSSSim.Force.call(this);
+
+	this.b = b;
 
 };
 
 FOSSSim.LinearDampingForce.prototype = Object.create( FOSSSim.Force.prototype);
 
 FOSSSim.LinearDampingForce.prototype.addForceToTotal = function(F){
-	console.log("I am a linear damping force");
+	
+	var v = fosssim_scene.v;
+	for(var i = 0; i < v.length/2; i++)
+	{
+		v_seg = numeric.getBlock(v, [2*i, 0], [2*i + 1, 0]);
+		add2SegIntoF(F, numeric.mul(-this.b, v_seg), 2*i);
+	}
+
+
 };

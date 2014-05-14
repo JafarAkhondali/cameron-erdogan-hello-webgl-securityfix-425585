@@ -43,19 +43,3 @@ FOSSSim.SpringForce.prototype.addForceToTotal = function(F){
 	add2SegIntoF(F, numeric.mul(fdamp, -1), 2*j);
 
 };
-
-// // Compute the elastic component
-//   Vector2s nhat = x.segment<2>(2*m_endpoints.second)-x.segment<2>(2*m_endpoints.first); 
-//   scalar l = nhat.norm(); 
-//   assert( l != 0.0 ); 
-//   nhat /= l;
-//   Vector2s fdamp = nhat;
-//   nhat *= m_k*(l-m_l0);
-//   gradE.segment<2>(2*m_endpoints.first)  -= nhat;
-//   gradE.segment<2>(2*m_endpoints.second) += nhat;
-
-//   // Compute the internal damping
-//   // Remember we are computing minus the force here
-//   fdamp *= m_b*fdamp.dot(v.segment<2>(2*m_endpoints.second)-v.segment<2>(2*m_endpoints.first));
-//   gradE.segment<2>(2*m_endpoints.first)  -= fdamp;
-//   gradE.segment<2>(2*m_endpoints.second) += fdamp;

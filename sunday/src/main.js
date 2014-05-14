@@ -11,6 +11,7 @@ var paused = true;
 var dt = 0.01;
 var time_elapsed = 0;
 var time_display;
+var stepper_type = "";
 
 // create scenestepper object also
 
@@ -47,7 +48,7 @@ function initScene(canvas)
     three_renderer.setSize(canvas_width, canvas_height);
 
     //sets camera position
-    three_camera.position.z = 20;
+    three_camera.position.z = 5;
 
     // initialialzes fosssim object
     fosssim_scene = new FOSSSim.Scene();
@@ -70,6 +71,7 @@ function animate()
 		time_display.innerHTML = time_elapsed;
 		
 		fosssim_stepper.explicitEulerStep();
+		// fosssim_stepper.symplecticEulerStep();
 		// update();
 		render();
 	}	

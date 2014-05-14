@@ -12,10 +12,11 @@
 		<script src="src/Scene.js"></script>
 		<script src="src/Stepper.js"></script>
 		<script src="src/Force/Force.js"></script>
+		<script src="src/Force/ForceHelpers.js"></script>
 		<script src="src/Force/SimpleGravityForce.js"></script>
 		<script src="src/Force/GravitationalForce.js"></script>
 		<script src="src/Force/SpringForce.js"></script>
-		<script src="src/Force/ForceHelpers.js"></script>
+		<script src="src/Force/LinearDampingForce.js"></script>
 
 		
 		<canvas id="canvas">
