@@ -3,14 +3,10 @@ $(function() {
 	$("#change-code").click(function(){
 		var forces = $("#force-forms").children();
 		var particles = $("#particle-forms").children();
-		// console.log(kids);
 
 		//deal with particles
+
 		//sent to the FOSSSim scene in an array of particles like [px, py, vx, vy, m, r]
-
-		// fosssim_scene.test("balls:)");
-		
-
 		var fosssim_particles = [];
 		for(var i = 0; i < particles.length; i++)
 		{
@@ -29,8 +25,6 @@ $(function() {
 		
 
 		// deal with forces
-
-
 		var fosssim_forces = []
 		for(i = 0; i < forces.length; i++)
 		{
