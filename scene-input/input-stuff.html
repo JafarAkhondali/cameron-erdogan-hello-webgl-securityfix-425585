@@ -1,0 +1,31 @@
+<html>
+	<title>Inputtin'</title>
+	<head>
+		<link rel=stylesheet href="input-stuff.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>	
+		<script src="input-stuff.js"></script>
+	</head>
+	<body>
+		<div id="the-forms">
+			<div id="particle-forms"></div>
+			<div id="force-forms"></div>
+			Integrator Type: <select id="integrator-type">
+				<option value="explicit euler">Explicit Euler</option>
+				<option value="symplectic euler">Symplectic Euler</option>
+			<select>
+		</div>
+		<div id="add-buttons">
+			<button id="add-particle">add particle</button>
+			<div id="which-force">Force Type to Add:
+				<select>
+					<option value="simple-grav">Simple Gravitational</option>
+					<option value="grav">Gravitational</option>
+					<option value="linear-damp">Linear Damping</option>
+					<option value="spring">Spring</option>
+				</select>
+			</div>
+			<button id="add-force">add force</button>
+		</div>
+		<button id="submit">Submit</button>
+	</body>
+</html>
