@@ -10,6 +10,14 @@ FOSSSim.Stepper.prototype =
 {
 	constructor: FOSSSim.Stepper,
 
+	step: function(integrator_type)
+	{
+		if(integrator_type == "explicit euler")
+			this.explicitEulerStep();
+		else if(integrator_type == "symplectic euler")
+			this.symplecticEulerStep();
+	},
+
 	explicitEulerStep: function()
 	{
 
@@ -18,7 +26,6 @@ FOSSSim.Stepper.prototype =
 		var v = fosssim_scene.v;
 		var m = fosssim_scene.m;
 
-		console.log(x);
 
 		var F = [];
 		makeZeros(F, 2*fosssim_scene.num_particles);

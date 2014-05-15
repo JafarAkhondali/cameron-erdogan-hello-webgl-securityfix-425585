@@ -16,8 +16,6 @@ FOSSSim.Scene = function()
 	this.r = [];
 	this.forces = [];
 
-	
-
 	// array of THREE spheres
 	this.spheres = [];
 };
@@ -57,7 +55,6 @@ FOSSSim.Scene.prototype =
 
 		// console.log(this.x);
 
-		console.log(this.spheres);
 	},
 
 	initLights: function()
@@ -87,17 +84,36 @@ FOSSSim.Scene.prototype =
 			this.r.push(particles[i][5]);
 		}
 
-		this.initSpheres();
-		this.initLights();
+		//deal with the different forces
+		
+		for(i = 0; i < forces.length; i++)
+		{
+			this_force = forces[i]
+			if(this_force[0] == "simple grav")
+			{
+				var simple_grav = new FOSSSim.SimpleGravityForce(this_force[1]);
+				this.forces.push(simple_grav);
+			}
+			else if(this_force[0] == "grav")
+			{
+				var grav = new FOSSSim.GravitationalForce(this_force[1], this_force[2]);
+				this.forces.push(grav);
+			}
+			else if(this_force[0] == "linear damp")
+			{
+				var linear_damp = new FOSSSim.LinearDampingForce(this_force[1]);
+				this.forces.push(linear_damp);
+			}
+			else if(this_force[0] == "spring")
+			{
+				var spring = new FOSSSim.SpringForce(this_force[1], this_force[2], this_force[3], this_force[4])
+				this.forces.push(spring);
+			}
+		}
+
+		
+
 	},
-
-	test: function()
-	{
-		console.log("balls");
-		console.log(this.x);
-	},
-
-
 
 	// initVectors: function()
 	// {	
@@ -140,13 +156,13 @@ FOSSSim.Scene.prototype =
 
 
 	// }, 
-	initForces: function()
-	{
-		var grav_force = new FOSSSim.GravitationalForce([0, 1], 0.000118419);
-		this.forces.push(grav_force);
-		// var damping_force = new FOSSSim.LinearDampingForce(1);
-		// this.forces.push(damping_force);
-	}, 
+	// initForces: function()
+	// {
+	// 	var grav_force = new FOSSSim.GravitationalForce([0, 1], 0.000118419);
+	// 	this.forces.push(grav_force);
+	// 	// var damping_force = new FOSSSim.LinearDampingForce(1);
+	// 	// this.forces.push(damping_force);
+	// }, 
 	accumulateForces: function(F)
 	{
 		for(var i = 0; i < this.forces.length; i++)

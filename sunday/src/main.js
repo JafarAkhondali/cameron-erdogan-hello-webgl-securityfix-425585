@@ -11,7 +11,7 @@ var paused = true;
 var dt = 0.01;
 var time_elapsed = 0;
 var time_display;
-var stepper_type = "";
+var integrator_type;
 
 // create scenestepper object also
 
@@ -20,8 +20,7 @@ function main(canvas)
 {
 	initScene(canvas);
 
-	animate();
-	// console.log("a thing");
+	animate();	// console.log("a thing");
 }
 
 function setTimeDisplay(td)
@@ -50,25 +49,29 @@ function initScene(canvas)
     //sets camera position
     three_camera.position.z = 10;
 
-    
+    //if we've already defined the fosssim scene via clicking the button in the scene tab
+    //add the spheres and lights from the fosssim scene to the three scene
+    if(fosssim_scene)
+    {
+    	fosssim_scene.initSpheres();
+    	fosssim_scene.initLights();
 
-    
-
-    // render();
+    	$("#moveit").prop('disabled', false);
+    	$("#step").prop('disabled', false);
+    }
 }
 
-function setScene(particles, forces)
+function setScene(particles, forces, integrator)
 {
 	// initialialzes fosssim object
     fosssim_scene = new FOSSSim.Scene();
     fosssim_scene.init();
 
 	fosssim_scene.initVectors(particles, forces);
-	console.log(fosssim_scene.x);
-	three_scene.updateMatrix();
-
-	console.log(three_scene);
+	
 	// initialize fosssim stepper
+
+	integrator_type = integrator;
     fosssim_stepper = new FOSSSim.Stepper();
 
 	render();
@@ -84,9 +87,7 @@ function animate()
 		time_elapsed += 1;
 		time_display.innerHTML = time_elapsed;
 		
-		fosssim_stepper.explicitEulerStep();
-		// fosssim_stepper.symplecticEulerStep();
-		// update();
+		fosssim_stepper.step(integrator_type);
 		render();
 	}	
 }
@@ -101,10 +102,8 @@ function step()
 	time_elapsed += 1;
 	time_display.innerHTML = time_elapsed;
 
-	console.log(fosssim_scene.x);
-	fosssim_stepper.explicitEulerStep();
-	console.log(fosssim_scene.x);
-		// update();
+
+	fosssim_stepper.step(integrator_type);
 	render();
 }
 
@@ -113,15 +112,6 @@ function render()
 	three_renderer.render(three_scene, three_camera);
 }
 
-// // scene stepping would go here
-// function update()
-// {
-// 	// for now just increment the position of sphere by point 1 or whatever
-// 	var sphere_pos = fosssim_scene.sphere.position;
-// 	sphere_pos.x += 0.01;
-// 	sphere_pos.z += 0.01;
-
-// }
 
 function togglePause()
 {
