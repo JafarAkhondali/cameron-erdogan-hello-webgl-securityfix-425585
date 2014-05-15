@@ -1,14 +1,21 @@
 FOSSSim.Scene = function()
 {
 	//set manually for now
-	this.num_particles = 2;
+	this.num_particles = 0;
 
 	// arrays of floats for math calculations
+	// this.x = [0,0];
+	// this.v = [1, 1];
+	// this.m = [1, 1];
+	// this.r = [1];
+	// this.forces = [];
+
 	this.x = [];
 	this.v = [];
 	this.m = [];
 	this.r = [];
 	this.forces = [];
+
 	
 
 	// array of THREE spheres
@@ -22,8 +29,9 @@ FOSSSim.Scene.prototype =
 
 	init: function()
 	{
-		this.initSpheres();
-		this.initLights();
+		
+		// this.initVectors([], []);
+		// console.log("fossim scene is created");
 
 	}, 
 
@@ -31,9 +39,9 @@ FOSSSim.Scene.prototype =
 	{
 		
 		
-		this.initVectors();
+		// this.initVectors();
 
-		this.initForces();
+		// this.initForces();
 
 		for(var i = 0; i < this.num_particles; i++)
 		{
@@ -47,58 +55,91 @@ FOSSSim.Scene.prototype =
 			three_scene.add(sphere);
 		}
 
+		// console.log(this.x);
+
+		console.log(this.spheres);
 	},
 
 	initLights: function()
 	{
+		// console.log(this.spheres);
 		this.light = new THREE.PointLight(0xffffff);
 		this.light.position.set(10,10,10);
 		three_scene.add(this.light);
 		this.ambientlight = new THREE.AmbientLight( 0x404040 ); // soft white light
 		three_scene.add( this.ambientlight );
 	}, 
-	// this is hardcoded for now
-	initVectors: function()
-	{	
+
+	initVectors: function(particles, forces)
+	{
+
+		// particles are input like [px, py, vx, vy, m, r]
+		this.num_particles = particles.length;
+
+		for(var i = 0; i < particles.length; i++)
+		{
+			this.x.push(particles[i][0]);
+			this.x.push(particles[i][1]);
+			this.v.push(particles[i][2]);
+			this.v.push(particles[i][3]);
+			this.m.push(particles[i][4]);
+			this.m.push(particles[i][4]);
+			this.r.push(particles[i][5]);
+		}
+
+		this.initSpheres();
+		this.initLights();
+	},
+
+	test: function()
+	{
+		console.log("balls");
+		console.log(this.x);
+	},
 
 
 
-		// this.x.push(-4);
-		// this.x.push(0);
-		// this.v.push(0);
-		// this.v.push(3);
-		// this.m.push(1);
-		// this.m.push(1);
-		// this.r.push(1);
+	// initVectors: function()
+	// {	
 
 
-		// this.x.push(4);
-		// this.x.push(0);
-		// this.v.push(10);
-		// this.v.push(0);
-		// this.m.push(1);
-		// this.m.push(1);
-		// this.r.push(0.5);
 
-		// //gravitational force test
-		this.x.push(0);
-		this.x.push(0);
-		this.v.push(0);
-		this.v.push(0);
-		this.m.push(0.331436e6);
-		this.m.push(0.331436e6);
-		this.r.push(0.06);
-
-		this.x.push(1);
-		this.x.push(0);
-		this.v.push(0);
-		this.v.push(6.28316);
-		this.m.push(1);
-		this.m.push(1);
-		this.r.push(0.02);
+	// 	// this.x.push(-4);
+	// 	// this.x.push(0);
+	// 	// this.v.push(0);
+	// 	// this.v.push(3);
+	// 	// this.m.push(1);
+	// 	// this.m.push(1);
+	// 	// this.r.push(1);
 
 
-	}, 
+	// 	// this.x.push(4);
+	// 	// this.x.push(0);
+	// 	// this.v.push(10);
+	// 	// this.v.push(0);
+	// 	// this.m.push(1);
+	// 	// this.m.push(1);
+	// 	// this.r.push(0.5);
+
+	// 	// //gravitational force test
+	// 	this.x.push(0);
+	// 	this.x.push(0);
+	// 	this.v.push(0);
+	// 	this.v.push(0);
+	// 	this.m.push(0.331436e6);
+	// 	this.m.push(0.331436e6);
+	// 	this.r.push(0.6);
+
+	// 	this.x.push(1);
+	// 	this.x.push(0);
+	// 	this.v.push(0);
+	// 	this.v.push(6.28316);
+	// 	this.m.push(1);
+	// 	this.m.push(1);
+	// 	this.r.push(0.2);
+
+
+	// }, 
 	initForces: function()
 	{
 		var grav_force = new FOSSSim.GravitationalForce([0, 1], 0.000118419);

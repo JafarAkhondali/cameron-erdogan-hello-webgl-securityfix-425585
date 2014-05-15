@@ -1,14 +1,11 @@
 var editor;
 
 $(document).ready(function(){    
-
-	            // var initialscript = $("#starter").html();
-	            // $("#script").html(initialscript);
-
 	$.get('initial.txt', function(data)
 	{
 		$('#code').html(data);
 		initialize_coding_window();
+		load_page_from_txt("fiddle.txt", "");
 	});
 });
 
@@ -21,10 +18,6 @@ function initialize_coding_window()
           matchBrackets: true,
           tabMode: 'indent'
         });
-
-    // // editor.on("change", function(cm, co ){
-    // //     console.log(co);
-    // // });
 	
 	$("#change-code").click(function()
 	{

@@ -33,8 +33,8 @@ function initScene(canvas)
 {
 	// this.canvas = canvas;
 	// kinda arbitrarily set for math purposes
-	var canvas_height = 300;
-    var canvas_width = 300;
+	var canvas_height = 400;
+    var canvas_width = 400;
 
     // creates scene
     three_scene = new THREE.Scene();
@@ -48,16 +48,30 @@ function initScene(canvas)
     three_renderer.setSize(canvas_width, canvas_height);
 
     //sets camera position
-    three_camera.position.z = 5;
+    three_camera.position.z = 10;
 
-    // initialialzes fosssim object
+    
+
+    
+
+    // render();
+}
+
+function setScene(particles, forces)
+{
+	// initialialzes fosssim object
     fosssim_scene = new FOSSSim.Scene();
     fosssim_scene.init();
 
-    // initialize fosssim stepper
+	fosssim_scene.initVectors(particles, forces);
+	console.log(fosssim_scene.x);
+	three_scene.updateMatrix();
+
+	console.log(three_scene);
+	// initialize fosssim stepper
     fosssim_stepper = new FOSSSim.Stepper();
 
-    render();
+	render();
 }
 
 function animate()
@@ -77,13 +91,19 @@ function animate()
 	}	
 }
 
+function test()
+{
+	fosssim_scene.test();
+}
+
 function step()
 {
-	// console.log("stepped");
 	time_elapsed += 1;
 	time_display.innerHTML = time_elapsed;
 
+	console.log(fosssim_scene.x);
 	fosssim_stepper.explicitEulerStep();
+	console.log(fosssim_scene.x);
 		// update();
 	render();
 }

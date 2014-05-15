@@ -1,19 +1,87 @@
 <html>
 	<title>Fiddle Me Timbers</title>
 	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
 		<link rel=stylesheet href="fiddler.css">
 		<link rel=stylesheet href="outside-tools/codemirror-3.22/lib/codemirror.css">
 		<script src="outside-tools/codemirror-3.22/lib/codemirror.js"></script>
 		<script src="outside-tools/codemirror-3.22/mode/javascript/javascript.js"></script>
 		<script src="outside-tools/codemirror-3.22/addon/edit/matchbrackets.js"></script>
+		<link rel=stylesheet href="bootstrap-3.1.1/css/bootstrap.css">
+		<script src="bootstrap-3.1.1/js/bootstrap.js"></script>
+		<script src="input-stuff.js"></script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+		
 		<script src="playfiddle.js"></script>
 
 	</head>
 
 	<body>
 		
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#scene-input" data-toggle="tab">Scene</a></li>
+			<li class="dropdown">
+		        <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">Functions <b class="caret"></b></a>
+		        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+		          <li><a href="#function-1" tabindex="-1" data-toggle="tab">function 1</a></li>
+		        </ul>
+		    </li>
+		    <li><a href="#animation-display" data-toggle="tab">Display</a></li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+
+
+			<div class="tab-pane active" id="scene-input">
+
+
+			  	<div id="the-forms">
+					<div id="particle-forms"></div>
+					<div id="force-forms"></div>
+					Integrator Type: <select id="integrator-type">
+						<option value="explicit euler">Explicit Euler</option>
+						<option value="symplectic euler">Symplectic Euler</option>
+					<select>
+				</div>
+				<div id="add-buttons">
+					<button id="add-particle">add particle</button>
+					<div id="which-force">Force Type to Add:
+						<select>
+							<option value="simple-grav">Simple Gravitational</option>
+							<option value="grav">Gravitational</option>
+							<option value="linear-damp">Linear Damping</option>
+							<option value="spring">Spring</option>
+						</select>
+					</div>
+					<button id="add-force">add force</button>
+				</div>
+			  	<button id="change-code">Ch-ch-change</button>
+
+		  	</div>
+
+
+		   	<div class="tab-pane" id="animation-display">
+		   			<iframe id="fiddle" seamless></iframe>
+		   	</div>
+
+
+
+		  	<div class="tab-pane" id="function-1">
+
+				<div class="code-container">
+					<textarea id="code"></textarea>			
+				</div>
+				<button id="change-code">Ch-ch-change</button>
+
+		  	</div>
+
+
+		</div>
+		
+
+<!-- 
 		<iframe id="fiddle" seamless>
 
 		</iframe>
@@ -23,9 +91,32 @@
 			<textarea id="code"></textarea>
 					
 		</div>
-		
 		<button id="change-code">Ch-ch-change</button>
 
+		<div id="scene-input">
+				<div id="the-forms">
+				<div id="particle-forms"></div>
+				<div id="force-forms"></div>
+				Integrator Type: <select id="integrator-type">
+					<option value="explicit euler">Explicit Euler</option>
+					<option value="symplectic euler">Symplectic Euler</option>
+				<select>
+			</div>
+			<div id="add-buttons">
+				<button id="add-particle">add particle</button>
+				<div id="which-force">Force Type to Add:
+					<select>
+						<option value="simple-grav">Simple Gravitational</option>
+						<option value="grav">Gravitational</option>
+						<option value="linear-damp">Linear Damping</option>
+						<option value="spring">Spring</option>
+					</select>
+				</div>
+				<button id="add-force">add force</button>
+			</div>
+			<button id="submit">Submit</button>
+		</div>
+ -->
 	
 	</body>
 

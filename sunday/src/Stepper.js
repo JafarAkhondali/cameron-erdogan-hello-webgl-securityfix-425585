@@ -1,6 +1,6 @@
-// right now this is literally just going to be explicit euler
-// i'll build it into a more modular thing (to support different integration techniques) 
-// after I get this basic integration down
+
+
+
 FOSSSim.Stepper = function()
 {
 
@@ -17,6 +17,8 @@ FOSSSim.Stepper.prototype =
 		var x = fosssim_scene.x;
 		var v = fosssim_scene.v;
 		var m = fosssim_scene.m;
+
+		console.log(x);
 
 		var F = [];
 		makeZeros(F, 2*fosssim_scene.num_particles);
@@ -38,6 +40,8 @@ FOSSSim.Stepper.prototype =
 		fosssim_scene.v = v;
 
 		this.updateSpheresPos();
+
+
 	}, 
 
 	symplecticEulerStep: function()

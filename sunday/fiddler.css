@@ -1,22 +1,27 @@
 #fiddle
 {
-	width: 400px;
-	height: 450px;
+	width: 500px;
+	height: 500px;
 	display:inline-block;
 	border:1px solid #000000;
-	float: left;
+/*	float: left;*/
 }
 
 .code-container
 {
 	width: 55%;
-	display:block;
-	border:1px solid #000000;
-	float: right;
+	/*display:block;
+*/	border:1px solid #000000;
+/*	float: right;*/
 
 }
 
 #change-code
 {
-	float: right;
+	/*float: right;*/
+}
+
+#the-forms input
+{
+	width: 40px;
 }
