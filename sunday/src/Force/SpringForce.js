@@ -19,6 +19,8 @@ FOSSSim.SpringForce.prototype.addForceToTotal = function(F){
 	var i = this.endpoints[0];
 	var j = this.endpoints[1];
 
+	//getBlock gets a sub-matrix (a vector since on the the dimensions is one, in this case)
+	// that goes from the second argument's indicies to the third's
 	var nhat = numeric.sub(
 			numeric.getBlock(x, [2*j, 0], [2*j + 1, 0]), 
 			numeric.getBlock(x, [2*i, 0], [2*i + 1, 0])

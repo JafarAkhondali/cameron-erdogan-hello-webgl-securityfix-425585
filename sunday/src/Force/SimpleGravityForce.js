@@ -20,6 +20,7 @@ FOSSSim.SimpleGravityForce.prototype.addForceToTotal = function(F){
 		
 		// copySegmentIntoVector(F, seg, 2*i);
 
+		
 		add2SegIntoF(F, numeric.mul(m[2*i], this.g), 2*i);
 	}
 

@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>The Fiddle</title>
+		<style>canvas { width: 100%; height: 100% }</style>
+		<meta http-equiv="cache-control" content="no-cache" />
+	</head>
+	<body>
+		<!-- <link rel=stylesheet href="bootstrap-3.1.1/css/bootstrap.css"> -->
+		<script src="outside-tools/three.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="outside-tools/numeric-1.2.6.js"></script>
+		<script src="src/main.js"></script>
+		<script src="src/Scene.js"></script>
+		<script src="src/Stepper.js"></script>
+		<script src="src/Force/Force.js"></script>
+		<script src="src/Force/ForceHelpers.js"></script>
+		<script src="src/Force/SimpleGravityForce.js"></script>
+		<script src="src/Force/GravitationalForce.js"></script>
+		<script src="src/Force/SpringForce.js"></script>
+		<script src="src/Force/LinearDampingForce.js"></script>
+
+		
+		<canvas id="canvas">
+		</canvas>
+
+		<button id="moveit" disabled>Play</button>
+		<button id="step" disabled>Step</button>
+		<div id="time-display"></div>
+
+		<script>
+
+			var canvas = document.getElementById("canvas");
+			// alert(canvas);
+			main(canvas);
+			setTimeDisplay(document.getElementById("time-display"));
+
+		</script>
+
+
+		<script type="text/javascript">   
+	        $(document).ready(function(){    
+	            
+	            // editor.on("change", function(cm, co ){
+	            //     console.log(co);
+	            // });
+	            $("#moveit").click(function()
+	            {
+	                togglePause();
+	                // console.log(paused);
+	                if(paused)
+	                {
+	                	$("#moveit").html("Play");
+	                }
+	                else
+	               	{
+	               		$("#moveit").html("Pause");
+	               	}
+	            });
+
+	            $("#step").click(function()
+	            {
+	            	step();
+	            })
+
+
+	        });
+	    </script>
+	    <script>
+			$(document).ready(function () {
+				@@@
+			});
+			
+		</script>
+
+
+	</body>
+</html>
